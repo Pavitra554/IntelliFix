@@ -23,7 +23,7 @@ def prog_reader(file_paths:list)->str:
 
 
 def load_json(file_path:str)->dict:
-    """_summary_
+    """json file reader
 
     Args:
         file_path (str): _description_

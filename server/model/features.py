@@ -1,6 +1,6 @@
 from utils import load_json
 
-feature_prompts = load_json("feature_prompts.json")
+feature_prompts = load_json("IntelliFix\server\model\prompts.json")["feature_prompts"]
 
 def feature(choice:str)->str:
     """Returns predefined prompts for your given prompt choice
@@ -12,3 +12,4 @@ def feature(choice:str)->str:
         str: _description_
     """
     return feature_prompts[choice]
+

@@ -1,0 +1,16 @@
+{
+    "feature_prompts":
+    {
+        "debug" : "Debug the given code",
+        "compile" : "complie the above code and return the output, if input is not specified use random inputs",
+        "translate" : "translate to {given} language",
+        "optimize" : "optimize the debugged code if reuired",
+        "docs" : "provide neccessary documentation for the debugged code",
+        "requirements" : "provide all the module requirements for any changes in the debugged code"
+    },
+    "system_prompts":
+    {
+    "general":"You are a code assistant, that will accept the following code and do the following operation as intstrcted by the user"
+    }
+
+} 
