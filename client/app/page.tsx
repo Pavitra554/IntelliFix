@@ -1,32 +1,31 @@
-import ProductLogo from "@/components/ui/logo";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 import NavBar from "@/components/nav/nav";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <NavBar/>
-      <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center space-y-4 text-center">
-            <div className="space-y-2">
-              <ProductLogo size={60} />
-              <div className="mx-auto max-w-4xl w-full text-gray-500 md:text-xl dark:text-gray-400">
-                Welcome to IntelliFix, Harnessing the combined might of OpenAI and
-                LangChain, we offer seamless error fixing, Ai powered code debugging
-                and optimization. IntelliFix is a platform where every line of code
-                finds perfection.
-              </div>
+    <main className="min-h-screen p-4">
+      <NavBar />
+      <section className="w-full py-20">
+        <div className="max-w-3xl mx-auto w-full flex flex-col items-start space-y-12">
+          <Image src={'/logo.svg'} height={80} width={80} alt="Logo" className="drop-shadow-xl" />
+          <div className="flex flex-col space-y-8">
+            <div className="flex flex-col space-y-1">
+              <div className="text-xl md:text-4xl font-bold">Where Precision Meets Code.</div>
+              <div className=" md:text-2xl font-bold text-zinc-950/40 dark:text-white/40">IntelliFix, an Ai Powered Debugging and Optimization Tool.</div>
+              <div className="md:text-2xl font-bold text-zinc-950/40 dark:text-white/40">Experience Seamless Debugging Today!</div>
             </div>
-            <div className="flex flex-row items-center space-x-4">
+            <div>
               <Button asChild className="shadow-md">
                 <Link href="/main">Start Debugging</Link>
               </Button>
-              
             </div>
           </div>
         </div>
+      </section>
+      <section className="max-w-5xl mx-auto">
+        <div className="w-full h-96 border flex justify-center items-center rounded-lg">platform image</div>
       </section>
     </main>
   );

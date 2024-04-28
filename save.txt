@@ -1,6 +1,0 @@
- Welcome to IntelliFix, Harnessing the combined might of OpenAI and
-          LangChain, we offer seamless error fixing, Ai powered code debugging
-          and optimization. IntelliFix is a platform where every line of code
-          finds perfection.
-
-Debug and Fix your code using
