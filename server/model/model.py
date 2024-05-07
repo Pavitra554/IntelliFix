@@ -8,11 +8,7 @@ from utils import load_json,prog_reader
 # Load environment variables from the .env file where our api key is stored
 load_dotenv()
 
-# fetching the api key from the .env file
-api_k = os.getenv('OPENAI_API_KEY')
-
-# llm
-llm = ChatOpenAI(api_key = api_k)
+llm = ChatOpenAI()
 
 #system prompt
 sys_prompts = load_json("IntelliFix\server\model\prompts.json")["system_prompts"]
@@ -32,11 +28,14 @@ chat_template = ChatPromptTemplate.from_messages(
     [
         ("system", sys_prompt),
         ("human", prog_prompt),
-        ("human", feature)
+        ("human", "{feature}")
     ]
 )
 
 # chain
 chain = chat_template | llm 
 
-print(chain.invoke({}).content)
+# print(chain.invoke({"fr"}).content)
+
+def llm_invoke(feature:str)->str:
+    return str(chain.invoke({"feature":feature}).content)
