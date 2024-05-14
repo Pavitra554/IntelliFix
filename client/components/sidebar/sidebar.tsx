@@ -10,7 +10,7 @@ export default function SideBar() {
     const[ mode ,setMode] = React.useState("debugger")
     const { data: session } = useSession()
     return (
-        <section className="flex bg-zinc-950 max-w-72 w-full flex-col justify-between border-r p-3">
+        <section className="flex bg-white dark:bg-zinc-950 max-w-72 w-full flex-col justify-between border-r p-3">
             <div>
                 <button className="flex flex-row items-center gap-3 w-full border rounded-lg p-3 hover:bg-zinc-950 hover:text-white dark:hover:bg-zinc-800 ease-linear duration-100 ">
                     <Image src={'/logo.svg'} height={25} width={25} alt="Logo" className="drop-shadow-xl" />
