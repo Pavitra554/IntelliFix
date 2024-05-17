@@ -51,7 +51,19 @@ async def code_debugger(filename:str):
             }
 
 @router.get("/api/v1/Intellifix/translator")
-async def translator():
-    pass
+async def translator(filename:str, new_language:str):
+    d = get_dict(upload_file_path)
+
+    prog_prompt = await post.get_file_details(filename ,d)
+    feature_prompt = feature("translate")
+    helping_prompt= new_language
+
+    result = llm_invoke(prog_prompt=prog_prompt, feature_prompt=feature_prompt, helping_prompt=helping_prompt)
+    return {
+            "status" : "success",
+            "result" : result,
+            "message": "Operation executed succesfully"
+            }
+
 
 
