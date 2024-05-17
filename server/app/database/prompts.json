@@ -2,9 +2,9 @@
     "feature_prompts":
     {
         "debug" : "Debug the given code",
-        "compile" : "complie the above code and return the output, if input is not specified use random inputs",
-        "translate" : "translate to the language provided int the following prompt",
-        "optimize" : "optimize the given code if required",
+        "compile" : "compile the above code (debug before compiling if required) and return the output, if input is not specified use random inputs",
+        "translate" : "translate to another programming language (debug before translating if required) provided in the following prompt",
+        "optimize" : "optimize the given code (debug before optimzing if required) if required",
         "docs" : "provide neccessary documentation for the debugged code",
         "requirements" : "provide all the module requirements for any changes in the debugged code"
     },

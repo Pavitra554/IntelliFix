@@ -6,5 +6,9 @@
   "fibonacci.py": {
     "filename": "fibonacci.py",
     "content": "def fibonacci(n):\r\n    if n <= 0:  \r\n        return 0\r\n    elif n == 1:\r\n        return 1\r\n    else:\r\n        return fibonacci(n - 1) + fibonacci(n - 2)\r\n\r\n# Example usage:\r\nprint(\"Fibonacci sequence:\")\r\nfor i in range(10):\r\n    print(fibonacci(i))\r\n"
+  },
+  "binary_search.py": {
+    "filename": "binary_search.py",
+    "content": "def binary_search(arr, target):\r\n    low = 0\r\n    high = len(arr) - 1\r\n\r\n    while low <= high:\r\n        mid = (low + high) // 2  \r\n        if arr[mid] == target:\r\n            return mid\r\n        elif arr[mid] < target:\r\n            low = mid + 1\r\n        else:\r\n            high = mid - 1\r\n    return -1 \r\n\r\n\r\n\r\narr = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\r\ntarget = 12\r\nresult = binary_search(arr, target)\r\nif result != -1:  \r\n    print(\"Element is present at index\", result)\r\nelse:\r\n    print(\"Element is not present in array\")\r\n"
   }
 }
