@@ -1,6 +1,4 @@
 from fastapi import APIRouter, File, UploadFile, Depends, HTTPException
-from fastapi.responses import StreamingResponse
-import os
 import json
 
 router = APIRouter()
@@ -17,10 +15,7 @@ async def upload_file(file: UploadFile = File(...), d : dict=Depends(get_dict)):
         contents = await file.read()
         decoded_content = contents.decode()
         
-        # Remove leading and trailing whitespace from each line
-        stripped_content = '\n'.join(line.strip() for line in decoded_content.split('\n'))
-        
-        file_data = {"filename": file.filename, "content": stripped_content}
+        file_data = {"filename": file.filename, "content": decoded_content}
 
         if file.filename in d : 
             return {
