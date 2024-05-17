@@ -2,7 +2,7 @@ from fastapi import APIRouter, File, UploadFile, Depends, HTTPException
 import json
 
 router = APIRouter()
-upload_file_path = "uploaded_files.json"
+upload_file_path = "server\\app\\database\\uploaded_files.json"
 
 def get_dict():
     with open(upload_file_path) as j_file:
@@ -34,7 +34,7 @@ async def upload_file(file: UploadFile = File(...), d : dict=Depends(get_dict)):
         # Return a response confirming the successful upload
         return {
             "status" : "success",
-            "filenane" : file.filename,
+            "filename" : file.filename,
             "message": "File uploaded successfully"
             }
     except Exception as e:
