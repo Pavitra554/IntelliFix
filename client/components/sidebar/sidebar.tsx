@@ -6,26 +6,22 @@ import { ModeToggle } from '../theme-toggle';
 import { Button } from '../ui/button';
 import { signOut, useSession } from 'next-auth/react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { Bug, Mail, RefreshCcw, Terminal } from 'lucide-react';
+import { Bug, Mail, Plus, RefreshCcw, Terminal } from 'lucide-react';
 
 export default function SideBar() {
   const { data: session } = useSession();
   const { promptSize, toolMode, setPromptSize, setToolMode } = useStore();
 
   return (
-    <section className="flex bg-white dark:bg-zinc-950 max-w-72 w-full flex-col justify-between border-r p-3">
+    <section className="flex bg-white dark:bg-zinc-950 max-w-72 w-full flex-col justify-between border-r p-3 ">
       <div className="flex flex-col gap-3">
-        <button className="flex flex-row items-center gap-3 w-full border rounded-lg p-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 ease-linear duration-100 ">
-          <Image
-            src={'/logo.svg'}
-            height={25}
-            width={25}
-            alt="Logo"
-            className="drop-shadow-xl"
-          />
-          <div className="font-semibold ">New Prompt </div>
-        </button>
-        <div className="border-b"></div>
+        <Button
+          onClick={() => setToolMode('code_debugger')}
+          className={`flex justify-start dark:hover:bg-zinc-800 hover:bg-zinc-200`}
+          variant="outline"
+        >
+          <Plus className="mr-2 h-4 w-4" /> Code Debugger
+        </Button>
         <div className="text-xs text-zinc-500 font-bold tracking-wider">
           AI TOOLS
         </div>
