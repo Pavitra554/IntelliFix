@@ -86,7 +86,7 @@ export default function Home() {
           {/*  Chat Area */}
           <div className="overflow-y-scroll">
             {promptComponents.length != 0 && (
-              <div className="h-full w-full flex flex-col gap-3 ">
+              <div className="h-full w-full flex flex-col gap-3 D">
                 {promptComponents.map((e, i) => {
                   return e;
                 })}
