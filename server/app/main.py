@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from . import post,user
+from . import user
 
 
 app = FastAPI()
@@ -9,5 +9,5 @@ app = FastAPI()
 async def read_root():
     return {"message": "Hello, this is Intellifix"}
 
-app.include_router(post.router)
 app.include_router(user.router)
+

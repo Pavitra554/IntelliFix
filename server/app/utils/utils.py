@@ -43,7 +43,7 @@ def load_json(file_path:str)->dict:
         print(f"Error loading JSON file: {e}")
 
 
-feature_prompts = load_json("server\\app\\database\\prompts.json")["feature_prompts"]
+feature_prompts = load_json("server\\app\\prompts\prompts.json")["feature_prompts"]
 
 def feature(choice:str)->str:
     """Returns predefined prompts for your given prompt choice
@@ -55,3 +55,15 @@ def feature(choice:str)->str:
         str: _description_
     """
     return feature_prompts[choice]
+
+
+# output sanitizer
+def code_block(text:str):
+    '''modifies the string converted response into executable code string'''
+    
+    list = text.split("```")
+    message = list[0]
+    code = list[1].split("```")[0]
+
+    return message if message else "",code if code else ""
+
