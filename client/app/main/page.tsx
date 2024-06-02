@@ -84,13 +84,15 @@ export default function Home() {
             </div>
           )}
           {/*  Chat Area */}
-          {promptComponents.length != 0 && (
-            <div className="overflow-y-scroll h-full w-full flex flex-col justify-end gap-3">
-              {promptComponents.map((e, i) => {
-                return e;
-              })}
-            </div>
-          )}
+          <div className="overflow-y-scroll">
+            {promptComponents.length != 0 && (
+              <div className="h-full w-full flex flex-col gap-3 ">
+                {promptComponents.map((e, i) => {
+                  return e;
+                })}
+              </div>
+            )}
+          </div>
           {/* Prompt Area */}
           <div className="w-full flex flex-row items-end gap-3 bg-zinc-200/40 dark:bg-zinc-800/40 dark:hover:bg-zinc-800 hover:bg-zinc-200 border rounded-lg p-3 pl-4">
             <textarea
@@ -115,7 +117,7 @@ export default function Home() {
               <Paperclip size={17} />
             </Button>
           </div>
-          <div className="text-center text-xs text-zinc-500 p-3">
+          <div className="text-center text-xs text-zinc-500 p-2">
             IntelliFix can make mistakes. Check important info.
           </div>
         </div>
