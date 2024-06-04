@@ -28,7 +28,6 @@ prog_prompt = utils.prog_reader(prog_paths)
 feature_prompt = utils.feature("optimize")
 
 
-
 prompt_general = ChatPromptTemplate.from_messages(
     [
         ("system",sys_prompt_general),
