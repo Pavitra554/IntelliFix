@@ -15,7 +15,7 @@ api_k = os.getenv('OPENAI_API_KEY')
 llm = ChatOpenAI(api_key=api_k)
 
 #system prompt
-sys_prompts = utils.load_json("prompts\\prompts.json")["system_prompts"] #cahnge
+sys_prompts = utils.load_json("prompts.json")["system_prompts"] #cahnge
 sys_prompt_general = sys_prompts["general"]
 sys_prompt_support = sys_prompts["support"]
 
