@@ -43,7 +43,7 @@ def load_json(file_path:str)->dict:
         print(f"Error loading JSON file: {e}")
 
 
-feature_prompts = load_json("server\\prompts\prompts.json")["feature_prompts"]
+feature_prompts = load_json("prompts\prompts.json")["feature_prompts"]
 
 def feature(choice:str)->str:
     """Returns predefined prompts for your given prompt choice

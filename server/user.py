@@ -1,6 +1,6 @@
 from fastapi import APIRouter, File, UploadFile, Depends, HTTPException,status
-from .model.model import llm_invoke, followup_invoke
-from .utils.utils import feature, code_block
+from model.model import llm_invoke, followup_invoke
+from utils.utils import feature, code_block
 from typing import Optional
 from fastapi.security import APIKeyHeader
 from dotenv import load_dotenv

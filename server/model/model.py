@@ -4,7 +4,7 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from dotenv import load_dotenv
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories import ChatMessageHistory
-from ..utils import utils
+from utils import utils
 import os
 
 
@@ -15,7 +15,7 @@ api_k = os.getenv('OPENAI_API_KEY')
 llm = ChatOpenAI(api_key=api_k)
 
 #system prompt
-sys_prompts = utils.load_json("server\\prompts\\prompts.json")["system_prompts"] #cahnge
+sys_prompts = utils.load_json("prompts\\prompts.json")["system_prompts"] #cahnge
 sys_prompt_general = sys_prompts["general"]
 sys_prompt_support = sys_prompts["support"]
 
