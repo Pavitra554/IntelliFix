@@ -26,16 +26,31 @@ import { useSession } from 'next-auth/react';
 import ExamplePromptCard from '@/components/cards/example-prompt';
 
 export default function Home() {
+  const [textareaHeight, setTextareaHeight] = React.useState(30);
   const { data: session } = useSession();
 
   const {
+    disable_btn,
     prompt,
-    promptSize,
     toolMode,
     setPrompt,
     promptComponents,
     setPromptComponents,
+    setDisableBtn,
   } = useStore();
+
+  const handlePromptArea = (event: any) => {
+    const { value } = event.target;
+    setPrompt(value);
+
+    const lineHeight = 24;
+    const maxLines = 12;
+    const newHeight = Math.min(
+      value.split('\n').length * lineHeight,
+      maxLines * lineHeight,
+    );
+    setTextareaHeight(newHeight);
+  };
 
   return (
     <main className="h-screen w-full flex flex-row">
@@ -96,20 +111,23 @@ export default function Home() {
           {/* Prompt Area */}
           <div className="w-full flex flex-row items-end gap-3 bg-zinc-200/40 dark:bg-zinc-800/40 dark:hover:bg-zinc-800 hover:bg-zinc-200 border rounded-lg p-3 pl-4">
             <textarea
-              rows={promptSize}
               value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
+              style={{ height: `${textareaHeight}px` }}
+              onChange={(e) => handlePromptArea(e)}
               placeholder="Enter Prompt..."
               className=" my-auto w-full text-zinc-950 dark:text-white bg-transparent flex outline-none resize-none ease-linear duration-100 transition-all"
             ></textarea>
 
             <Button
               onClick={() => {
+                setTextareaHeight(30);
+                setDisableBtn(true);
                 setPromptComponents(<UserPrompt val={prompt} />);
                 setPromptComponents(<AiResponse />);
                 setPrompt('');
               }}
               size="icon"
+              disabled={disable_btn}
             >
               <ArrowUpFromDot size={17} />
             </Button>

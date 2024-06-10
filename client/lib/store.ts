@@ -1,24 +1,23 @@
 import { create } from 'zustand';
 
 interface State {
+  disable_btn: boolean;
   prompt: string;
-  promptSize: number;
   toolMode: string;
   promptComponents: any[];
+  setDisableBtn: (val: boolean) => void;
   setPrompt: (message: string) => void;
-  setPromptSize: (size: number) => void;
   setToolMode: (size: string) => void;
   setPromptComponents: (prompt: any) => void;
 }
 
 const useStore = create<State>((set) => ({
+  disable_btn: false,
+
+  //Prompt
   prompt: '',
-  promptSize: 1,
   promptComponents: [],
   toolMode: 'code_debugger',
-  setPromptSize: (size: number) => {
-    set(() => ({ promptSize: size }));
-  },
   setToolMode: (mode: string) => {
     set(() => ({ toolMode: mode }));
   },
@@ -29,6 +28,9 @@ const useStore = create<State>((set) => ({
   },
   setPrompt: (message: string) => {
     set(() => ({ prompt: message }));
+  },
+  setDisableBtn: (val: boolean) => {
+    set(() => ({ disable_btn: val }));
   },
 }));
 
