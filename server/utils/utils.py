@@ -61,18 +61,17 @@ def feature(choice:str)->str:
 # output sanitizer
 def code_block(text: str):
     '''Divides response into message and code block'''
-
     try:
         parts = text.split("```")
         if len(parts) < 2:
-            return None
-         
+            return text.strip(), ""
+        
         message = parts[0].strip()
         code = parts[1].split("```")[0].strip()
+        
         return message, code
-    
     except:
-        return None
+        return text.strip(), ""
 
 # prompt retriever
 async def prompt_retriever(prompt_as_str:Optional[str] = None, prompt_as_file: Optional[UploadFile] = File(None)):
@@ -91,18 +90,9 @@ async def prompt_retriever(prompt_as_str:Optional[str] = None, prompt_as_file: O
 
 # result
 async def process_result(result):
-    """filters result if it has a code block or not"""
+    """Filters result if it has a code block or not"""
+    message_response, code_response = code_block(result)
 
-    result_parts = code_block(result)
-
-    if result_parts is None:
-        return {
-            "status": "success",
-            "response": result,
-            "message": "Operation executed successfully"
-        }
-
-    message_response, code_response = result_parts
     return {
         "status": "success",
         "message_response": message_response,
@@ -110,4 +100,3 @@ async def process_result(result):
         "message": "Operation executed successfully"
     }
 
-    
