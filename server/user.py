@@ -1,6 +1,6 @@
 from fastapi import APIRouter, File, UploadFile, Depends, HTTPException,status, Form
 from model.model import llm_invoke, followup_invoke
-from utils.utils import feature, code_block, process_result, prompt_retriever
+from utils.utils import feature, process_result, prompt_retriever
 from typing import Optional
 from fastapi.security import APIKeyHeader
 from dotenv import load_dotenv
@@ -30,7 +30,7 @@ async def verify_token(api_key: str = Depends(api_key_header)):
 
 # optimizer
 @router.get("/api/v1/Intellifix/code_optimizer", dependencies=[Depends(verify_token)] )
-async def code_optimizer(prompt_as_str: Optional[str] = None, prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] = None):
+async def code_optimizer(prompt_as_str: Optional[str] = Form(None), prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] =Form(None)):
     try:
         if follow_up is not None:
             result = followup_invoke(follow_up=follow_up)
@@ -53,7 +53,7 @@ async def code_optimizer(prompt_as_str: Optional[str] = None, prompt_as_file: Op
 
 # debugger
 @router.get("/api/v1/Intellifix/debugger", dependencies=[Depends(verify_token)])
-async def code_debugger(prompt_as_str: Optional[str] = None, prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] = None):
+async def code_debugger(prompt_as_str: Optional[str] = Form(None), prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] =Form(None)):
 
     try:
         if follow_up is not None:
@@ -78,7 +78,7 @@ async def code_debugger(prompt_as_str: Optional[str] = None, prompt_as_file: Opt
 
 # translator
 @router.get("/api/v1/Intellifix/translator", dependencies=[Depends(verify_token)])
-async def translator(required_language:str, prompt_as_str: Optional[str] = None, prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] = None):
+async def translator(required_language:str = Form(...), prompt_as_str: Optional[str] = Form(None), prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] = Form(None)):
     try:
         if follow_up is not None:
             result = followup_invoke(follow_up=follow_up)
@@ -103,7 +103,7 @@ async def translator(required_language:str, prompt_as_str: Optional[str] = None,
 
 # docs
 @router.get("/api/v1/Intellifix/docs", dependencies=[Depends(verify_token)])
-async def docs( prompt_as_str: Optional[str] = None, prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] = None):
+async def docs( prompt_as_str: Optional[str] = Form(None), prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] = Form(None)):
     try:
         if follow_up is not None:
             result = followup_invoke(follow_up=follow_up)
@@ -127,7 +127,7 @@ async def docs( prompt_as_str: Optional[str] = None, prompt_as_file: Optional[Up
 
 # requirements    
 @router.get("/api/v1/Intellifix/reqs", dependencies=[Depends(verify_token)])
-async def reqs( prompt_as_str: Optional[str] = None, prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] = None):
+async def reqs( prompt_as_str: Optional[str] = Form(None), prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] = Form(None)):
     try:
         if follow_up is not None:
             result = followup_invoke(follow_up=follow_up)
