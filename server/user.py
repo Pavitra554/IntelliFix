@@ -29,7 +29,7 @@ async def verify_token(api_key: str = Depends(api_key_header)):
 
 
 # optimizer
-@router.get("/api/v1/Intellifix/code_optimizer", dependencies=[Depends(verify_token)] )
+@router.post("/api/v1/Intellifix/code_optimizer", dependencies=[Depends(verify_token)] )
 async def code_optimizer(prompt_as_str: Optional[str] = Form(None), prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] =Form(None)):
     try:
         if follow_up is not None:
@@ -52,7 +52,7 @@ async def code_optimizer(prompt_as_str: Optional[str] = Form(None), prompt_as_fi
 
 
 # debugger
-@router.get("/api/v1/Intellifix/debugger", dependencies=[Depends(verify_token)])
+@router.post("/api/v1/Intellifix/debugger", dependencies=[Depends(verify_token)])
 async def code_debugger(prompt_as_str: Optional[str] = Form(None), prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] =Form(None)):
 
     try:
@@ -77,7 +77,7 @@ async def code_debugger(prompt_as_str: Optional[str] = Form(None), prompt_as_fil
     
 
 # translator
-@router.get("/api/v1/Intellifix/translator", dependencies=[Depends(verify_token)])
+@router.post("/api/v1/Intellifix/translator", dependencies=[Depends(verify_token)])
 async def translator(required_language:str = Form(...), prompt_as_str: Optional[str] = Form(None), prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] = Form(None)):
     try:
         if follow_up is not None:
@@ -102,7 +102,7 @@ async def translator(required_language:str = Form(...), prompt_as_str: Optional[
     
 
 # docs
-@router.get("/api/v1/Intellifix/docs", dependencies=[Depends(verify_token)])
+@router.post("/api/v1/Intellifix/docs", dependencies=[Depends(verify_token)])
 async def docs( prompt_as_str: Optional[str] = Form(None), prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] = Form(None)):
     try:
         if follow_up is not None:
@@ -126,7 +126,7 @@ async def docs( prompt_as_str: Optional[str] = Form(None), prompt_as_file: Optio
     
 
 # requirements    
-@router.get("/api/v1/Intellifix/reqs", dependencies=[Depends(verify_token)])
+@router.post("/api/v1/Intellifix/reqs", dependencies=[Depends(verify_token)])
 async def reqs( prompt_as_str: Optional[str] = Form(None), prompt_as_file: Optional[UploadFile] = File(None), follow_up:Optional[str] = Form(None)):
     try:
         if follow_up is not None:
