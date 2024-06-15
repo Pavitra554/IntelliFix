@@ -4,6 +4,7 @@ import user
 
 app = FastAPI()
 
+# Allow all origins
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # This allows all origins
