@@ -88,7 +88,7 @@ export default function OptimizePage() {
   };
 
   const submitPrompt = () => {
-    if (follow_up === '' && file == null) {
+    if (prompt === '' && file == null) {
       toast.error('Please provide prompt or file', {
         className:
           'bg-zinc-200/40 dark:bg-zinc-800/40 text-zinc-600 dark:text-zinc-400 border',
@@ -98,10 +98,10 @@ export default function OptimizePage() {
 
     setTextareaHeight(30);
     setIsFollowUp(!isFollowUp);
-    if (follow_up) {
+    if (prompt) {
       setPromptComponents((prevComponents) => [
         ...prevComponents,
-        <UserPrompt key={prevComponents.length} val={follow_up} />,
+        <UserPrompt key={prevComponents.length} val={prompt} />,
       ]);
     }
     setPromptComponents((prevComponents) => [
@@ -115,7 +115,7 @@ export default function OptimizePage() {
   };
 
   const submitFollowUp = () => {
-    if (prompt === '' && file == null) {
+    if (follow_up === '' && file == null) {
       toast.error('Please provide prompt or file', {
         className:
           'bg-zinc-200/40 dark:bg-zinc-800/40 text-zinc-600 dark:text-zinc-400 border',
@@ -123,7 +123,7 @@ export default function OptimizePage() {
       return;
     }
     setTextareaHeight(30);
-    if (prompt) {
+    if (follow_up) {
       setPromptComponents((prevComponents) => [
         ...prevComponents,
         <UserPrompt key={prevComponents.length} val={follow_up} />,

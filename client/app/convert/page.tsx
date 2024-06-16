@@ -131,9 +131,17 @@ export default function OptimizePage() {
     fetchData(file, prompt, follow_up, language);
     setPrompt('');
     setFile(null);
+    setLanguage('');
   };
 
   const submitFollowUp = () => {
+    if (language === '') {
+      toast.error('Please select language', {
+        className:
+          'bg-zinc-200/40 dark:bg-zinc-800/40 text-zinc-600 dark:text-zinc-400 border',
+      });
+      return;
+    }
     if (follow_up === '' && file == null) {
       toast.error('Please provide prompt or file', {
         className:
