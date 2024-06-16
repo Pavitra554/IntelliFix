@@ -1,4 +1,5 @@
-
+from typing import Optional
+from fastapi import UploadFile,File
 import json
 
 def prog_reader(file_paths:list)->str:
@@ -58,12 +59,44 @@ def feature(choice:str)->str:
 
 
 # output sanitizer
-def code_block(text:str):
-    '''modifies the string converted response into executable code string'''
-    
-    list = text.split("```")
-    message = list[0]
-    code = list[1].split("```")[0]
+def code_block(text: str):
+    '''Divides response into message and code block'''
+    try:
+        parts = text.split("```")
+        if len(parts) < 2:
+            return text.strip(), ""
+        
+        message = parts[0].strip()
+        code = parts[1].split("```")[0].strip()
+        
+        return message, code
+    except:
+        return text.strip(), ""
 
-    return message if message else "",code if code else ""
+# prompt retriever
+async def prompt_retriever(prompt_as_str:Optional[str] = None, prompt_as_file: Optional[UploadFile] = File(None)):
+    """Retrieve prompt content from string or file."""
+
+    if prompt_as_str is not None:
+        return prompt_as_str
+
+    if prompt_as_file is not None:
+        contents = await prompt_as_file.read()
+        return contents.decode()
+
+    return None
+    
+
+
+# result
+async def process_result(result):
+    """Filters result if it has a code block or not"""
+    message_response, code_response = code_block(result)
+
+    return {
+        "status": "success",
+        "message_response": message_response,
+        "code_response": code_response,
+        "message": "Operation executed successfully"
+    }
 

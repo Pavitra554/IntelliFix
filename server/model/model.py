@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories import ChatMessageHistory
 from utils import utils
-import os
+from typing import Optional
 
 
 # Load environment variables from the .env file where our api key is stored
@@ -65,7 +65,7 @@ chain_with_message_history_support = RunnableWithMessageHistory(
 )
 
 
-def llm_invoke(prog_prompt:str, feature_prompt:str, helping_prompt:str = "")->str:
+def llm_invoke(prog_prompt:str, feature_prompt:str, helping_prompt:Optional[str] = "")->str:
     """_summary_
 
     Args:
