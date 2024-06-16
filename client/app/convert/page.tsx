@@ -87,7 +87,7 @@ export default function OptimizePage() {
     });
     setPromptComponents((prevComponents) => [
       ...prevComponents,
-      <FileChat val="File Added" />,
+      <FileChat key={prevComponents.length} val="File Added" />,
     ]);
   };
 
@@ -125,7 +125,7 @@ export default function OptimizePage() {
     }
     setPromptComponents((prevComponents) => [
       ...prevComponents,
-      <LoadingChat />,
+      <LoadingChat key={prevComponents.length} />,
     ]);
 
     fetchData(file, prompt, follow_up, language);
@@ -151,7 +151,7 @@ export default function OptimizePage() {
 
     setPromptComponents((prevComponents) => [
       ...prevComponents,
-      <LoadingChat />,
+      <LoadingChat key={prevComponents.length} />,
     ]);
     fetchData(file, prompt, follow_up, language);
     setFollowUp('');
@@ -218,12 +218,13 @@ export default function OptimizePage() {
         return [
           ...newComponents,
           <ErrorChat
+            key={prevComponents.length}
             message={error.mesage ? error.message : 'Something went wrong...'}
           />,
         ];
       });
     }
-  }, [data, error]);
+  }, [data, error, loading]);
   return (
     <main className="h-screen w-full flex flex-row">
       <SideBar />
@@ -275,7 +276,7 @@ export default function OptimizePage() {
             {promptComponents.length != 0 && (
               <div className="h-full w-full flex flex-col gap-3 D">
                 {promptComponents.map((e, i) => {
-                  return e;
+                  return <div key={i}>{e}</div>;
                 })}
               </div>
             )}
