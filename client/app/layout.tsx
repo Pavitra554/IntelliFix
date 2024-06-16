@@ -5,6 +5,8 @@ import { Roboto } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import Providers from './providers';
 import { getServerSession } from 'next-auth';
+import { Toaster } from 'react-hot-toast';
+
 const roboto = Roboto({ weight: '400', subsets: ['latin'], display: 'swap' });
 
 export const metadata: Metadata = {
@@ -26,7 +28,10 @@ export default async function RootLayout({
           roboto.className,
         )}
       >
-        <Providers session={session}>{children}</Providers>
+        <Providers session={session}>
+          <Toaster position="top-right" reverseOrder={false} />
+          {children}
+        </Providers>
       </body>
     </html>
   );

@@ -34,7 +34,7 @@ export default function Signin() {
           <div className="w-full flex flex-row gap-2">
             <Button
               onClick={() =>
-                signIn('google', { redirect: true, callbackUrl: '/main' })
+                signIn('google', { redirect: true, callbackUrl: '/debug' })
               }
               className="w-full flex flex-row gap-2 "
             >

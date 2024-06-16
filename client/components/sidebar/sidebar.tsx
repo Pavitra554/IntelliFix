@@ -1,35 +1,46 @@
 'use client';
 import React from 'react';
-import Image from 'next/image';
-import useStore from '@/lib/store';
+import { usePathname, useRouter } from 'next/navigation';
 import { ModeToggle } from '../theme-toggle';
 import { Button } from '../ui/button';
 import { signOut, useSession } from 'next-auth/react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { Bug, Mail, Plus, RefreshCcw, Terminal } from 'lucide-react';
+import { Bug, Plus, RefreshCcw, Terminal } from 'lucide-react';
+import useDebug from '@/lib/use-debug';
 
 export default function SideBar() {
+  const { reset } = useDebug();
+  const pathname = usePathname();
+  const router = useRouter();
   const { data: session } = useSession();
-  const { promptSize, toolMode, setPromptSize, setToolMode } = useStore();
 
   return (
     <section className="flex bg-white dark:bg-zinc-950 max-w-72 w-full flex-col justify-between border-r p-3 ">
       <div className="flex flex-col gap-3">
         <Button
-          onClick={() => setToolMode('code_debugger')}
+          onClick={() => {
+            reset();
+            router.push('/');
+            setTimeout(() => {
+              router.push('/debug');
+            }, 1);
+          }}
           className={`flex justify-start dark:hover:bg-zinc-800 hover:bg-zinc-200`}
           variant="outline"
         >
-          <Plus className="mr-2 h-4 w-4" /> Code Debugger
+          <Plus className="mr-2 h-4 w-4" /> New Prompt
         </Button>
         <div className="text-xs text-zinc-500 font-bold tracking-wider">
           AI TOOLS
         </div>
         <div className="w-full flex flex-col gap-3">
           <Button
-            onClick={() => setToolMode('code_debugger')}
+            onClick={() => {
+              reset();
+              router.push('/debug');
+            }}
             className={`flex justify-start dark:hover:bg-zinc-800 hover:bg-zinc-200  ${
-              toolMode === 'code_debugger' &&
+              pathname === '/debug' &&
               'bg-zinc-100 text-zinc-950 dark:text-white dark:bg-zinc-800/50'
             }`}
             variant="outline"
@@ -37,9 +48,12 @@ export default function SideBar() {
             <Bug className="mr-2 h-4 w-4" /> Code Debugger
           </Button>
           <Button
-            onClick={() => setToolMode('code_optimizer')}
+            onClick={() => {
+              reset();
+              router.push('/optimize');
+            }}
             className={`flex justify-start dark:hover:bg-zinc-800 hover:bg-zinc-200 ${
-              toolMode === 'code_optimizer' &&
+              pathname === '/optimize' &&
               'bg-zinc-100 text-zinc-950 dark:text-white dark:bg-zinc-800/50'
             }`}
             variant="outline"
@@ -47,49 +61,17 @@ export default function SideBar() {
             <Terminal className="mr-2 h-4 w-4" /> Code Optimizer
           </Button>
           <Button
-            onClick={() => setToolMode('code_converter')}
+            onClick={() => {
+              reset();
+              router.push('/convert');
+            }}
             className={`flex justify-start dark:hover:bg-zinc-800 hover:bg-zinc-200 ${
-              toolMode === 'code_converter' &&
+              pathname === '/convert' &&
               'bg-zinc-100 text-zinc-950 dark:text-white dark:bg-zinc-800/50'
             }`}
             variant="outline"
           >
             <RefreshCcw className="mr-2 h-4 w-4" /> Code Converter
-          </Button>
-        </div>
-        <div className="text-xs text-zinc-500 font-bold tracking-wider">
-          PROMPT SIZE
-        </div>
-        <div className="flex flex-row gap-3">
-          <Button
-            onClick={() => setPromptSize(1)}
-            className={`w-full flex justify-start dark:hover:bg-zinc-800 hover:bg-zinc-200  ${
-              promptSize === 1 &&
-              'bg-zinc-100 text-zinc-950 dark:text-white dark:bg-zinc-800/50'
-            }`}
-            variant="outline"
-          >
-            Small
-          </Button>
-          <Button
-            onClick={() => setPromptSize(7)}
-            className={`w-full flex justify-start dark:hover:bg-zinc-800 hover:bg-zinc-200 ${
-              promptSize === 7 &&
-              'bg-zinc-100 text-zinc-950 dark:text-white dark:bg-zinc-800/50'
-            }`}
-            variant="outline"
-          >
-            Medium
-          </Button>
-          <Button
-            onClick={() => setPromptSize(14)}
-            className={`w-full flex justify-start dark:hover:bg-zinc-800 hover:bg-zinc-200 ${
-              promptSize === 14 &&
-              'bg-zinc-100 text-zinc-950 dark:text-white dark:bg-zinc-800/50'
-            }`}
-            variant="outline"
-          >
-            Large
           </Button>
         </div>
       </div>

@@ -31,7 +31,7 @@ export default function Home() {
             </div>
             <div className="flex flex-row items-center gap-2">
               <Button asChild className="shadow-md font-semibold">
-                <Link href="/main">Start Debugging</Link>
+                <Link href="/debug">Start Debugging</Link>
               </Button>
               <button className="flex flex-row gap-2 items-center p-2 border rounded-lg dark:hover:bg-zinc-800 hover:bg-zinc-100 ease-linear duration-100">
                 <SiGithub className="h-6 w-6" />
@@ -43,8 +43,14 @@ export default function Home() {
       </section>
       <section className="max-w-5xl mx-auto relative my-10">
         <div className="absolute h-full opacity-30 w-full bg-gradient-to-r from-indigo-700 to-purple-700 blur-3xl animate-pulse duration-2000"></div>
-        <div className="relative dark:bg-black bg-white w-full h-[70vh] border flex justify-center items-center rounded-lg text-xl font-bold">
-          Platform image / demo video will be added here 🚀
+        <div className="relative w-full h-[85vh] flex justify-center items-center rounded-lg text-xl font-bold">
+          <Image
+            src={'/demo.png'}
+            alt={'demo'}
+            width={1000}
+            height={1000}
+            className="h-full w-full"
+          />
         </div>
       </section>
       <section>

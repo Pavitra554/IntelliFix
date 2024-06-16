@@ -2,7 +2,18 @@
   @tailwind components;
   @tailwind utilities;
 
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
 
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #71717a; 
+  opacity: 0.1;
+  border-radius: 10px;
+}
 
   @layer base {
     :root {
