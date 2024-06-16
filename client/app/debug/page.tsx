@@ -115,7 +115,7 @@ export default function DebugPage() {
   };
 
   const submitFollowUp = () => {
-    if (prompt === '' && file == null) {
+    if (follow_up === '' && file == null) {
       toast.error('Please provide prompt or file', {
         className:
           'bg-zinc-200/40 dark:bg-zinc-800/40 text-zinc-600 dark:text-zinc-400 border',
