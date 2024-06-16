@@ -123,7 +123,7 @@ export default function DebugPage() {
       return;
     }
     setTextareaHeight(30);
-    if (prompt) {
+    if (follow_up) {
       setPromptComponents((prevComponents) => [
         ...prevComponents,
         <UserPrompt key={prevComponents.length} val={follow_up} />,

@@ -98,10 +98,10 @@ export default function OptimizePage() {
 
     setTextareaHeight(30);
     setIsFollowUp(!isFollowUp);
-    if (prompt) {
+    if (follow_up) {
       setPromptComponents((prevComponents) => [
         ...prevComponents,
-        <UserPrompt key={prevComponents.length} val={prompt} />,
+        <UserPrompt key={prevComponents.length} val={follow_up} />,
       ]);
     }
     setPromptComponents((prevComponents) => [
